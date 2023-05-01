@@ -11,16 +11,11 @@ class VirtualKeyboard {
         this.textarea = document.createElement('textarea');
         this.textarea.classList.add('textarea');
         this.textarea.disabled = true;
-
-
-        //this.init();
     }
 
     init() {
-
         const keyboard = document.createElement('div');
         keyboard.classList.add('keyboard');
-       
 
         for (let row of this.keys) {
             const rowEl = document.createElement('div');
@@ -34,18 +29,18 @@ class VirtualKeyboard {
                     this.onKeyPress(event.target, key);
                     console.log('mousedoun');
                 });
+
                 keyButton.addEventListener('mouseup', (event) => {
                     event.target.classList.remove('active-button');
                 });
+
                 window.addEventListener('keydown', (event) => {
                     if (event.code.slice(3) === key) {
                         this.onKeyPress(keyButton, key);
-                        //console.log(event.code.slice(3));
                     }
                 });
                 document.addEventListener('keyup', () => {
                     keyButton.classList.remove('active-button');
-
                 });
 
                 if (key === ' ') {
@@ -70,7 +65,6 @@ class VirtualKeyboard {
             case 'Shift': return;
             default: this.textarea.value += key;
         }
-
     }
 }
 
@@ -80,10 +74,6 @@ const virtualKeyboard = new VirtualKeyboard();
 
 virtualKeyboard.init();
 
-// document.addEventListener('keydown', event => {
-//     const key = event.key;
-//     virtualKeyboard.onKeyPress(event, key);
-// });
 
 
 

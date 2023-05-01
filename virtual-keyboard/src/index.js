@@ -2,7 +2,7 @@ class VirtualKeyboard {
     constructor() {
         this.keys = [
             ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Bksp'],
-            ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', "'", 'Del'],
+            ['Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', "'", 'Del'],
             ['Caps Lock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', '\\', 'Enter'],
             ['Shift', '/', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ",", '.', '/', '\u2191', 'Shift'],
             ['Ctrl', 'Win', 'Alt', ' ', 'Alt', 'Ctrl', '\u2190', '\u2193', '\u2192']
@@ -60,9 +60,25 @@ class VirtualKeyboard {
         target.classList.add('active-button');
 
         switch (key) {
+            case 'Bksp':
+                this.textarea.value = this.textarea.value.slice(0, -1);
+                break;
+            case 'Tab':
+                this.textarea.value += '    ';
+                break;
+            case 'Caps Lock':
+                break;
+            case 'Enter':
+                this.textarea.value += '\n';
+                break;
             case 'Alt': return;
             case 'Ctrl': return;
             case 'Shift': return;
+            case 'Win':
+                break;
+            case 'Del':
+                this.textarea.value = '';
+                break;
             default: this.textarea.value += key;
         }
     }

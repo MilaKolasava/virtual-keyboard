@@ -7,7 +7,6 @@ class VirtualKeyboard {
             ['Shift', '/', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ",", '.', '/', '\u2191', 'Shift'],
             ['Ctrl', 'Win', 'Alt', ' ', 'Alt', 'Ctrl', '\u2190', '\u2193', '\u2192']
         ];
-
         this.textarea = document.createElement('textarea');
         this.textarea.classList.add('textarea');
         this.textarea.disabled = true;
@@ -18,8 +17,8 @@ class VirtualKeyboard {
         keyboard.classList.add('keyboard');
 
         for (let row of this.keys) {
-            const rowEl = document.createElement('div');
-            rowEl.classList.add('keyboard-row');
+            const rowElement = document.createElement('div');
+            rowElement.classList.add('keyboard-row');
             for (let key of row) {
                 const keyButton = document.createElement('div');
                 keyButton.classList.add('key');
@@ -27,7 +26,6 @@ class VirtualKeyboard {
 
                 keyButton.addEventListener('mousedown', (event) => {
                     this.onKeyPress(event.target, key);
-                    console.log('mousedoun');
                 });
 
                 keyButton.addEventListener('mouseup', (event) => {
@@ -46,17 +44,15 @@ class VirtualKeyboard {
                 if (key === ' ') {
                     keyButton.classList.add('space-button');
                 }
-                rowEl.append(keyButton);
+                rowElement.append(keyButton);
             }
-            keyboard.append(rowEl);
+            keyboard.append(rowElement);
         }
-
         document.body.append(keyboard);
         document.body.append(this.textarea);
     }
 
     onKeyPress(target, key) {
-        console.log(key);
         target.classList.add('active-button');
 
         switch (key) {
@@ -84,10 +80,7 @@ class VirtualKeyboard {
     }
 }
 
-
-
 const virtualKeyboard = new VirtualKeyboard();
-
 virtualKeyboard.init();
 
 
